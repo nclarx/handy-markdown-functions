@@ -84,5 +84,4 @@
 outputFileName="$1"
 htmlTemplate="$2"
 
-pandoc -s *.md -f markdown -t html5 --template $htmlTemplate --section-divs --metadata-file meta.yaml -V current_date="$(date +%d-%m-%Y%n)" |
-    wkhtmltopdf --outline --outline-depth '2' --margin-bottom '20' --footer-font-name 'HelveticaNeue-Regular' --footer-left '[doctitle] generated [date] at [time]' --footer-right 'Page [page] of [toPage]' --footer-font-size '8' --footer-spacing '5' toc --xsl-style-sheet './toc.xsl' - $outputFileName
+pandoc -s *.md -f markdown -t html5 --template $htmlTemplate --section-divs --metadata-file meta.yaml -V current_date="$(date +%d-%m-%Y%n)" | wkhtmltopdf --outline --outline-depth '2' --margin-bottom '20' --footer-font-name 'HelveticaNeue-Regular' --footer-left '[doctitle] generated [date] at [time]' --footer-right 'Page [page] of [toPage]' --footer-font-size '8' --footer-spacing '5' toc --xsl-style-sheet './toc.xsl' - $outputFileName

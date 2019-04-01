@@ -2,6 +2,20 @@
 
 A collection of handy bash functions that do stuff with markdown.
 
-## mk-md-pdf-bk
+## How-to
 
-A function which takes a folder of markdown files and turns them into a pdf book with a table of contents. See script for docs.
+Copy the `all_functions.sh` file into your home directory or another folder and add it to your shell config following to your `.bashrc` or `.zshrc`:
+
+```shell
+source "~/all_functions.sh"
+```
+
+## Functions
+
+### mk-md-pdf-bk
+
+Create a formatted PDF book with a table of contents from markdown files in the current working directory.
+
+### mk-pdf
+
+Creates a pdf from any text file.
