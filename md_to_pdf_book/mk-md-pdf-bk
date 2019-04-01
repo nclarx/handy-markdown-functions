@@ -1,0 +1,90 @@
+#!/bin/bash
+
+####################################################################
+#
+# Make Markdown into a PDF Book
+#
+# Create a formatted PDF book with a table 
+# of contents from markdown files in 
+# the current working directory.
+# 
+# TL;DR - check Usage below, and the `test` folder in the repo
+#         for a starter template and meta.yaml to see how 
+#         the function operates.
+#
+# Repo: https://github.com/nclarx/handy-markdown-functions
+#
+# Dependencies
+# 
+# Pandoc https://pandoc.org/installing.html
+# Wkhtmltopdf https://wkhtmltopdf.org/downloads.html, suggest using
+# the dev build: https://builds.wkhtmltopdf.org/0.12.6-dev/ because of a
+# bug in the latest release that prevents the TOC from working properly. 
+# 
+# Metadata
+#
+# * Create a `meta.yaml` with properties containing metadata
+#   to be rendered in the template, see an example at
+#   https://github.com/users/
+# * `meta.yaml` must be in the same directory as the markdown
+# * You can add your own properties and render these in your
+#   HTML template 
+# * You can create arrays of values using the following syntax:
+#
+#   `keywords:
+#    - item one
+#    - item two
+#    - item three`
+#
+# Your `meta.yaml` should have a title property.
+#
+# Template
+#
+# The template must be an HTML5 compliant document. It will 
+# render variables from the `meta.yaml` file anywhere you
+# use them surrounded by `$`, example `$title$`. 
+#
+# Markdown File Preparation
+#
+# Ensure the filenames of the markdown files are named in
+# alphanumerically in the order you want them to be combined.
+#
+# Check to ensure that headings across the markdown files are 
+# ordered hierarchically or the table of contents may not be
+# indented correctly
+#
+# Table of Contents - `toc.xsl`
+#
+# The `toc.xsl` is used by WkHtmltoPdf as a template for the table of
+# contents. You can modify the CSS to style the TOC and modify the
+# XML to suit your needs.
+#
+# Instructions:
+# 
+#   1. call function with `outputFilename` and `htmlTemplate` args in
+#      directory with markdown files, a `meta.yaml`
+#   2. all markdown files in the working directory will be concatenated
+#
+# Usage:
+# 
+# Call this function in a directory which contains markdown files to
+# generate a PDF which 
+#
+# Args:
+# $1: the path to and name of the output file including 
+#     the .pdf extension, example: `./outputFile.pdf`
+# 
+# $2: path to an html template, example: ~/.templates/template.html
+#
+# Example: makePdfBook book.pdf ./template.html
+#
+#############################################################################
+
+function mkPdfBk() {
+    outputFileName="$1"
+    htmlTemplate="$2"
+
+    pandoc -s *.md -f markdown -t html5 --template $htmlTemplate --section-divs --metadata-file meta.yaml -V current_date="$(date +%d-%m-%Y%n)" | 
+
+    wkhtmltopdf --outline --outline-depth '2' --margin-bottom '20' --footer-font-name 'HelveticaNeue-Regular' --footer-left '[doctitle] generated [date] at [time]' --footer-right 'Page [page] of [toPage]' --footer-font-size '8' --footer-spacing '5' toc --xsl-style-sheet './toc.xsl' - $outputFileName
+}

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  $if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+  $endif$
+  <title>$title$ $if(subtitle)$- $subtitle$$endif$</title>
+  <style>
+    .page {
+      page-break-before: always;
+    }
+
+    html {
+      font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+
+    body {
+      color: #444;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 60em;
+      background: #fefefe;
+    }
+
+    a {
+      color: #20C20E;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: #20C20E;
+    }
+
+    a:hover {
+      color: #000000;
+    }
+
+    a:active {
+      color: #faa700;
+    }
+
+    a:focus {
+      outline: thin dotted;
+    }
+
+    *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+
+    *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: normal;
+    }
+
+    h4,
+    h5,
+    h6 {
+      font-weight: bold;
+    }
+
+    h1,
+    .title {
+      font-size: 2.5em;
+    }
+
+    h2,
+    .subtitle {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 1.2em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 0.9em;
+    }
+
+    blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+    }
+
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    pre,
+    code,
+    kbd,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+    }
+
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    b,
+    strong {
+      font-weight: bold;
+    }
+
+    dfn {
+      font-style: italic;
+    }
+
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+    sub {
+      bottom: -0.25em;
+    }
+
+    ul,
+    ol {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+
+    li p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul ul,
+    ol ol {
+      margin: .3em 0;
+    }
+
+    dl {
+      margin-bottom: 1em;
+    }
+
+    dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+    }
+
+    dd {
+      margin: 0 0 .8em 2em;
+    }
+
+    dd:last-child {
+      margin-bottom: 0;
+    }
+
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+    }
+
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+
+    table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+
+    table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+
+
+
+
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+
+    @media print {
+      * {
+        background: transparent !important;
+        color: black !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+        content: " ("attr(href) ")";
+      }
+
+      abbr[title]:after {
+        content: " ("attr(title) ")";
+      }
+
+      .ir a:after,
+      a[href^="javascript:"]:after,
+      a[href^="#"]:after {
+        content: "";
+      }
+
+      pre,
+      blockquote {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+
+      tr,
+      img {
+        page-break-inside: avoid;
+      }
+
+      img {
+        max-width: 100% !important;
+      }
+
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p,
+      h2,
+      h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+
+    .coder-square {
+      background: url('./branding/CA_square.png');
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #000000;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      /* text-decoration: underline;
+  text-decoration-color: #EEEEEE; */
+      border-bottom: 1px #BBBBBB solid;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    h5 {
+      font-size: 14px;
+    }
+
+    h6 {
+      font-size: 12px;
+    }
+
+    a {
+      font-weight: bold;
+      color: #20C20E;
+    }
+
+    p,
+    li {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    table {
+      border: solid 1px #333333;
+      margin-bottom: 1em;
+    }
+
+    th {
+      text-align: center;
+    }
+
+    code {
+      color: #20C20E !important;
+      background-color: #DDDDDD;
+      padding: 2px;
+    }
+
+    td,
+    th {
+      border: solid 1px #333333;
+    }
+
+    blockquote {
+      padding: 15px;
+      padding-left: 25px;
+      padding-right: 30px;
+      border-left-color: #20C20E;
+      /* Hacking green: https://www.colourlovers.com/color/20C20E/hacking_green */
+      text-align: justify;
+    }
+
+
+    /*
+CLASSES ====
+*/
+
+    .document-title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 80%;
+    }
+    .author {}
+
+    .manual-blockquote {
+      padding: 15px !important;
+      padding-left: 25px !important;
+      padding-right: 30px !important;
+      border-left-color: #20C20E !important;
+      /* Hacking green: https://www.colourlovers.com/color/20C20E/hacking_green */
+    }
+  </style>
+</head>
+
+<body>
+  $for(include-before)$
+  $include-before$
+  $endfor$
+  <section>
+    <span style="font-size: 72px; font-weight: bold;" class="title">
+      $title$
+    </span>
+    <br>
+    <span style="font-size: 48px; font-weight: bold;" class="subtitle">$subtitle$</span>
+    <p>
+      <em>
+        $abstract$
+      </em>
+    </p>
+    <p>
+      <strong>Date prepared:</strong> $current_date$
+    </p>
+  </section>
+  <div class="page" />
+  $if(toc)$
+  <h2>Table of Contents</h2>
+  <nav id="$idprefix$TOC">
+    $table-of-contents$
+  </nav>
+  $endif$
+  <div class="page" />
+  <section>
+    <h2>
+      Document Meta
+    </h2>
+    <p>
+      <strong>Document title:</strong> $title$ - $subtitle$
+    </p>
+    <p>
+      <strong>Date created:</strong> $current_date$
+    </p>
+    <p>
+      <strong>Keywords:</strong>
+    </p>
+    <ul>
+        $for(keywords)$
+        <li>
+            $keywords$
+        </li>  
+        $endfor$
+      
+    </ul>
+    <p>
+      <strong>Author(s)</strong>
+    </p>
+    $for(author)$
+    <p>
+      $author$
+    </p>
+    $endfor$
+    <p>
+      <strong>Abstract</strong>
+    </p>
+    <p>
+      <em>
+        $abstract$
+      </em>
+    </p>
+  </section>
+  <div class="page" />
+  $body$
+  $for(include-after)$
+  $include-after$
+  $endfor$
+</body>
+
+</html>
