@@ -57,7 +57,8 @@
 #
 # The `toc.xsl` is used by WkHtmltoPdf as a template for the table of
 # contents. You can modify the CSS to style the TOC and modify the
-# XML to suit your needs.
+# XML to suit your needs. `toc.xsl` should be in the same folder as the
+# markdown files.
 #
 # Instructions:
 # 
